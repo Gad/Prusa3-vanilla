@@ -25,8 +25,8 @@ translate([-7.99,-42,0]) cube([8,80,52]);
 translate([-1,30,0]) cube([6, 7, 52]);
 
 
-translate([-1,15,51]) cube([6, 20, 1]);
-translate([-1,15,22]) cube([6, 20, 2]);
+translate([-1,15,51-12]) cube([6, 20, 2]);
+translate([-1,15,23-12]) cube([4, 20, 2]);
 
 }
 
@@ -54,7 +54,7 @@ translate([21-15.5,-21-15.5,-1]) cylinder(r=2, h=5);
 
 // idler bearing cutout
 
-translate([21,24,33]) cylinder(r=12, h=17.5, $fn=90);
+translate([21,24,33-12]) cylinder(r=12, h=17.5+12, $fn=90);
 
 
 
@@ -79,31 +79,33 @@ translate([13,8,1]) cube([16.2,20,6]);
 //mounting to carriage
 translate([-5,20,-28]){
 translate([0,0,0])rotate([0,0,0])cylinder(r=3.3, h=70, $fn=15);
+translate([-3.3*2,-3.3,0])rotate([0,0,0])cube([3.3*2,3.3*2,70]);
 translate([0,0-24,0])rotate([0,0,0])cylinder(r=3.3, h=70, $fn=15);
-translate([0,0,30])rotate([0,0,0])cylinder(r=3.3/2, h=70, $fn=15);
-translate([0,0-24,30])rotate([0,0,0])cylinder(r=3.3/2, h=70, $fn=15);
+translate([-3.3*2,0-24-3.3,0])rotate([0,0,0])cube([3.3*2,3.3*2,70]);
+#translate([0,0,70.5])rotate([0,0,0])cylinder(r=3.3/2, h=70, $fn=15);
+translate([0,0-24,70.5])rotate([0,0,0])cylinder(r=3.3/2, h=70, $fn=15);
 }
 
 // idler nuts and filament channels
 
 translate([0,0,-2]){
-translate([-10,2+8+4,52-12]) nozzlemount();
+translate([-10,2+8+4,52-52/2+2]) nozzlemount();
 //translate([-10,2+8+4,52-12-25]) nozzlemount();
 
-translate([32.5,7,52-12-7-3]) cube([15,3,6]);
+translate([32.5,7,52-52/2+2-7-3]) cube([15,3,6]);
 
-translate([32.5,7,52-12-7-3+14]) cube([15,3,6]);
-
-
-//translate([5+32,-1,52-12+7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=3.3, h=10, $fn=6);
-//translate([5+32,-1,52-12-7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=3.3, h=10, $fn=6);
+translate([32.5,7,52-52/2+2-7-3+14]) cube([15,3,6]);
 
 
+//translate([5+32,-1,52-52/2+2+7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=3.3, h=10, $fn=6);
+//translate([5+32,-1,52-52/2+2-7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=3.3, h=10, $fn=6);
 
-translate([5+32,-1,52-12+7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=2, h=40, $fn=6);
-translate([5+32,-1,52-12-7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=2, h=40, $fn=6);
-translate([5+31,-1,52-12+7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=2, h=40, $fn=6);
-translate([5+31,-1,52-12-7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=2, h=40, $fn=6);
+
+
+translate([5+32,-1,52-52/2+2+7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=2, h=40, $fn=6);
+translate([5+32,-1,52-52/2+2-7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=2, h=40, $fn=6);
+translate([5+31,-1,52-52/2+2+7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=2, h=40, $fn=6);
+translate([5+31,-1,52-52/2+2-7]) rotate([0,90,90]) rotate([0,0,30]) cylinder(r=2, h=40, $fn=6);
 
 
 // pretty cutout
