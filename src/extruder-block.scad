@@ -58,9 +58,9 @@ translate([21,24,33-12]) cylinder(r=12, h=17.5+12, $fn=90);
 
 
 
-translate([21,8.1,7.5]) cylinder(r=6, h=43, $fn=50);
+translate([21,8.1,7.5]) cylinder(r=6.5, h=43, $fn=50);
 
-translate([21,8.1,-1]) cylinder(r=6, h=3, $fn=50);
+translate([21,8.1,-1]) cylinder(r=6.5, h=3, $fn=50);
 // Second filament drive bearing
 translate([21,8.1,1]) cylinder(r=8.1, h=6, $fn=50);
 // Second filament drive bearing insert cutout
@@ -69,9 +69,9 @@ translate([13,8,43]) cube([16.2,20,7.5]);
 
 
 translate([21,8.1,-5+52-4]) cylinder(r=8.1, h=7.5, $fn=50);
-translate([-6+21,8,7.5]) cube([12,12,40]);
+translate([-6.5+21,8,7.5]) cube([13,12,40]);
 
-translate([-6+21,8,-50+7]) cube([12,12,50]);
+translate([-6.5+21,8,-50+7]) cube([13,12,50]);
 
 
 translate([13,8,1]) cube([16.2,20,6]);
@@ -82,7 +82,7 @@ translate([0,0,0])rotate([0,0,0])cylinder(r=3.3, h=70, $fn=15);
 translate([-3.3*2,-3.3,0])rotate([0,0,0])cube([3.3*2,3.3*2,70]);
 translate([0,0-24,0])rotate([0,0,0])cylinder(r=3.3, h=70, $fn=15);
 translate([-3.3*2,0-24-3.3,0])rotate([0,0,0])cube([3.3*2,3.3*2,70]);
-#translate([0,0,70.5])rotate([0,0,0])cylinder(r=3.3/2, h=70, $fn=15);
+translate([0,0,70.5])rotate([0,0,0])cylinder(r=3.3/2, h=70, $fn=15);
 translate([0,0-24,70.5])rotate([0,0,0])cylinder(r=3.3/2, h=70, $fn=15);
 }
 
