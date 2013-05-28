@@ -58,17 +58,20 @@ module horizontal_bearing_test() {
 thinwall = 3;
 bearing_size = bearing_diameter + 2 * thinwall;
 
-module vertical_bearing_base() {
-  translate(v = [-2-bearing_size/4,0,29]) cube(size = [4+bearing_size/2,bearing_size,58], center = true);
-  cylinder(h = 58, r=bearing_size/2, $fn = 90);
+module vertical_bearing_base(height) {
+  translate(v = [-2-bearing_size/4,0,height/2]) cube(size = [4+bearing_size/2,bearing_size,height], center = true);
+  cylinder(h = height, r=bearing_size/2, $fn = 90);
 }
 
-module vertical_bearing_holes() {
-  translate(v = [0,0,-1]) cylinder(h = 62, r = bearing_diameter/2, $fn = 60);
+module vertical_bearing_holes(height) {
+  difference() {
+    translate(v = [0,0,-1]) cylinder(h = height+2, r = bearing_diameter/2, $fn = 60);
+    translate(v = [-bearing_diameter/2,0,height/2]) cube([4,bearing_diameter+2,10], center = true);
+  }
   rotate(a = [0,0,-70]) translate(v = [8,0,31.5]) cube(size = [5,1,62], center = true);
 }
 
 difference() {
-  vertical_bearing_base();
-  vertical_bearing_holes();
+  vertical_bearing_base(58);
+  vertical_bearing_holes(58);
 }

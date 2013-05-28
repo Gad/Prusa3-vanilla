@@ -11,25 +11,33 @@ m5_tolerance = 0.3;
 
 module x_end_base() {
   // Main block
-  height = 58;
+  height = 49;
 
-  translate(v = [-15,-9,height/2]) cube(size = [17,39,height], center = true);
+  difference() {
+    translate(v = [-15,-9-3.5/2,height/2]) cube(size = [18,39+3.5,height], center = true);
+    // Top corners cutouts
+    translate([-15+7,-20,51-2]) rotate([0,45,0]) translate([-15,-15,0]) cube([30,60,30]);
+    translate([-15-18+11,-20,51-2]) rotate([0,-45,0]) translate([-15,-15,0]) cube([30,60,30]);
+    // Bottom corners cutout
+    translate([-15+7,-20,-19-2]) rotate([0,45,0]) translate([-15,-15,0]) cube([30,60,30]);
+    translate([-15-18+11,-20,-19-2]) rotate([0,-45,0]) translate([-15,-15,0]) cube([30,60,30]);
+  }
 
   // Bearing holder
-  vertical_bearing_base();
+  vertical_bearing_base(49);
 
   // Nut trap
   // Cube
-  translate(v = [-2-2,-17,4]) cube(size = [8,16,8], center = true);
+  translate(v = [-2-2-1,-17,4]) cube(size = [8+2,16,8], center = true);
   // Hexagon
   translate(v = [0,-17,0]) rotate([0,0,30]) cylinder(h = 8, r = 8, $fn = 6);
 }
 
 module x_end_holes() {
-  vertical_bearing_holes();
+  vertical_bearing_holes(49);
 
   // Belt hole
-  translate(v = [-1,0,0])
+  translate(v = [-1,0,-4])
 
   difference() {
     translate(v = [-5.5-10+1.5,-10,30]) cube(size = [10,46,28], center = true);
@@ -42,10 +50,15 @@ module x_end_holes() {
 }
 
   // Bottom pushfit rod
-  translate(v = [-15,-41.5,6]) rotate(a = [-90,0,0]) pushfit_rod(8.1,50);
+  translate(v = [-15,-41.5,2]) rotate(a = [-90,0,0]) pushfit_rod(8.2,50);
 
   // Top pushfit rod
-  translate(v = [-15,-41.5,rod_distance+6]) rotate(a = [-90,0,0]) pushfit_rod(8.1,50);
+  translate(v = [-15,-41.5,rod_distance+2]) rotate(a = [-90,0,0]) pushfit_rod(8.2,50);
+
+  // Ziptie
+  translate([-30,-28.5,6]) cube([30,3.5,2]);
+  translate([-30,-28.5,49-6-1.9]) cube([30,3.5,2]);
+  translate([-30,-14,49-6-1.9]) cube([30,3.5,2]);
 
   // Nut trap
   translate(v = [0,-17,-0.5]) cylinder(h = 4, r1 = 3.3, r2 = 2.8, $fn = 25);
