@@ -9,9 +9,9 @@ module nozzlemount(){
 rotate([0,90,0]) cylinder(r=2, h=70, $fn=30);
 translate([17,0,0]) rotate([0,90,0]) cylinder(r2=3,r1=2, h=10, $fn=30);
 translate([1,0,0]) rotate([0,90,0]) cylinder(r1=4, r2=2, h=3);
-translate([0,15,0]) rotate([0,90,0]) cylinder(r=2, h=70);
+translate([0,15,0]) rotate([0,90,0]) cylinder(r=1.8, h=70, $fn = 10);
 translate([10-5,15,0]) rotate([0,90,0]) rotate([0,0,30]) cylinder(r=3.3, h=70,$fn=6);
-translate([0,-25,0]) rotate([0,90,0]) cylinder(r=2, h=70);
+#ranslate([0,-25,0]) rotate([0,90,0]) cylinder(r=1.8, h=70, $fn = 10);
 translate([10-5,-25,0]) rotate([0,90,0]) rotate([0,0,30])cylinder(r=3.3, h=70,$fn=6);
 }
 
