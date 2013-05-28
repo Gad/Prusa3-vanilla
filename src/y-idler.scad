@@ -7,18 +7,24 @@
 
 
 module y_idler_base() {
-  translate(v = [0,0,0]) cylinder(h = 17, r = 8);
-  translate(v = [0,20,0]) cylinder(h = 17, r = 8);
-  translate(v = [0,10,8.5]) cube(size = [16, 20, 17], center = true);
-  translate(v = [-4,10,8.5]) cube(size = [8, 16+20, 17], center = true);
+  translate(v = [0,0,0]) cylinder(h = 18, r = 8);
+  translate(v = [0,20,0]) cylinder(h = 18, r = 8);
+  translate(v = [0,10,9]) cube(size = [16, 20, 18], center = true);
+  intersection() {
+    translate(v = [-4,10,9]) cube(size = [8, 16+20, 18], center = true);
+    union() {
+      rotate(a = [0,0,135]) cube(size = [8,8,18]);
+      translate(v = [0,20,0]) rotate(a = [0,0,135]) cube(size = [8,8,18]);
+    }
+  }
 }
 
 module y_idler_holes() {
   translate(v = [0,0,-1]) cylinder(h = 120, r = 1.7, $fn = 10);
-  translate(v = [0,0,-1]) cylinder(h = 2, r = 3.1, $fn = 15);
-  translate(v = [0,0,16]) rotate([0,0,30]) cylinder(h = 2, r = 3.3, $fn = 6);
+  translate(v = [0,0,-1]) cylinder(h = 3, r = 3.1, $fn = 15);
+  translate(v = [0,0,16]) rotate([0,0,30]) cylinder(h = 3, r = 3.3, $fn = 6);
   translate(v = [0,20,-1]) cylinder(h = 25, r = 4.5);
-  translate(v = [0,0,3.5]) cylinder(h = 10, r = 12);
+  translate(v = [0,0,4]) cylinder(h = 10, r = 12);
 }
 
 
