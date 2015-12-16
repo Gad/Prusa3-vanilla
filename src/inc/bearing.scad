@@ -6,6 +6,10 @@
 // http://prusamendel.org
 
 bearing_diameter = 15;
+thinwall = 3;
+bearing_size = bearing_diameter + 2 * thinwall;
+tolerance = 0.15;
+bearing_height = 52;
 
 module horizontal_bearing_base(bearings=1) {
   translate(v=[0,0,6]) cube(size = [24,8+bearings*25,12], center = true);
@@ -55,23 +59,31 @@ module horizontal_bearing_test() {
   }
 }
 
-thinwall = 3;
-bearing_size = bearing_diameter + 2 * thinwall;
+
 
 module vertical_bearing_base(height) {
-  translate(v = [-2-bearing_size/4,0,height/2]) cube(size = [4+bearing_size/2,bearing_size,height], center = true);
-  cylinder(h = height, r=bearing_size/2, $fn = 90);
+  translate(v = [-bearing_size/2-3,bearing_size/2-1,height-2.5]) cube(size = [17,2,5], center = true);
+  difference(){
+  translate(v = [-2-bearing_size/4,0,height/2]) cube(size = [bearing_size/2-2,bearing_size,height], center = true);
+  //cylinder(h = height, r=bearing_size/2, $fn = 90);
+    //nice edge
+   translate (v = [2.2-bearing_size/4,-bearing_size/2,height/2]) rotate ([0,0,45]) cube(size=[2,2,60],center=true);
+   translate (v = [2.2-bearing_size/4,bearing_size/2,height/2]) rotate ([0,0,45]) cube(size=[2,2,60],center=true);  //translate(v = [-2-bearing_size/4,0,height/2]) 
+  }    
 }
 
 module vertical_bearing_holes(height) {
-  difference() {
-    translate(v = [0,0,-1]) cylinder(h = height+2, r = bearing_diameter/2, $fn = 60);
-    translate(v = [-bearing_diameter/2,0,height/2]) cube([4,bearing_diameter+2,10], center = true);
-  }
-  rotate(a = [0,0,-70]) translate(v = [8,0,31.5]) cube(size = [5,1,62], center = true);
+  
+  translate(v = [0,0,2]) cylinder(h = height+tolerance*2, r = bearing_diameter/2+tolerance, $fn = 60);
+    //translate(v = [-bearing_diameter/2,0,height/2]) cube([4,bearing_diameter+2,10], center = true);
+   translate(v = [0,0,-2]) cylinder(h = height*2, r = bearing_diameter/2-2, $fn = 60);
+  
 }
 
 difference() {
-  vertical_bearing_base(58);
-  vertical_bearing_holes(58);
-}
+  vertical_bearing_base(bearing_height);
+  vertical_bearing_holes(bearing_height-3.70);
+    
+ }
+translate(v = [-2-bearing_size/4,0,bearing_height-2]) cube(size = [bearing_size/2-2,bearing_size/2,tolerance*2], center = true) ;
+//vertical_bearing_holes(50);

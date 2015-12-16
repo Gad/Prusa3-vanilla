@@ -6,24 +6,37 @@
 // http://prusamendel.org
 
 use <inc/x-end.scad>
-
+bearing_diameter = 15;
+thinwall = 3;
+bearing_size = bearing_diameter + 2 * thinwall;
+tolerance = 0.15;
+bearing_height = 52;
+smooth_rod_diam=8;
+smooth_rod_diam_tolerance=0.1;
 module x_end_motor_base() {
   x_end_base();
   difference() {
-    translate(v = [-15,31,26.5-2]) cube(size = [18,44,49], center = true);
+    translate(v = [-15,31,26.5-2]) cube(size = [18,55,49], center = true);
   translate([-15+7,0,51-2]) rotate([0,45,0]) translate([-15,-15,0]) cube([30,60,30]);
     translate([-15-18+11,0,51-2]) rotate([0,-45,0]) translate([-15,-15,0]) cube([30,60,30]);
     // Bottom corners cutout
     translate([-15+7,10,-19-2]) rotate([0,45,0]) translate([-15,-15,0]) cube([30,60,30]);
     translate([-15-18+11,10,-19-2]) rotate([0,-45,0]) translate([-15,-15,0]) cube([30,60,30]);
   }
+    translate(v = [-4,17,0]) {
+        difference(){
+            rotate([0,0,30]) cylinder(h = 4, r = 7, $fn = 6);
+            translate(v = [3,-1,-1]) cylinder(h = 10, r = 1.5, $fn = 60);
+        }
+    }
+
 }
 
 module x_end_motor_holes() {
   x_end_holes();
-
+  // Hexagon
   // Position to place
-  translate(v = [-1,32,30.25-4.25]) {
+  translate(v = [-1,37,30.25-1.25]) {
     // Belt hole
     translate(v = [-14,1,0]) cube(size = [10,46,22], center = true);
 
@@ -58,10 +71,13 @@ module x_end_motor_holes() {
 
 // Final part
 module x_end_motor() {
-  difference(){
+  mirror([0,1,0]) difference(){
+      
     x_end_motor_base();
     x_end_motor_holes();
   }
 }
 
 x_end_motor();
+//embedded support for top bearing cap:
+  translate(v = [-2-bearing_size/4,0,bearing_height-1.25 ]) cube(size = [bearing_size/2-2,bearing_size/2,tolerance*2], center = true) ;

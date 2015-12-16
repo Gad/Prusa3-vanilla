@@ -6,6 +6,13 @@
 // http://prusamendel.org
 
 use <inc/x-end.scad>
+bearing_height = 52;
+bearing_diameter = 15;
+thinwall = 3;
+bearing_size = bearing_diameter + 2 * thinwall;
+tolerance = 0.15;
+
+
 
 module x_end_idler_base() {
   x_end_base();
@@ -20,11 +27,13 @@ module x_end_idler_holes() {
 
 // Final part
 module x_end_idler(){
-  mirror([0,1,0]) difference() {
+  difference() {
     x_end_idler_base();
     x_end_idler_holes();
   }
 }
+//embedded support for top bearing cap:
+  translate(v = [-2-bearing_size/4,0,bearing_height-1.25 ]) cube(size = [bearing_size/2-2,bearing_size/2,tolerance*2], center = true) ;
 
 x_end_idler();
 
